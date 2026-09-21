@@ -1,403 +1,113 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>IRONROOT</title>
-  <style>
-    :root{
-      --bg:#0a0d0c;
-      --panel:#111715;
-      --line:#26332e;
-      --text:#edf3ef;
-      --muted:#94a59d;
-      --accent:#b9f36b;
-      --danger:#ff7b72;
-      --warning:#f0c96b;
-      --shadow:rgba(0,0,0,.28);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Inter,Arial,sans-serif;
-    }
-
-    .app{
-      max-width:1200px;
-      margin:auto;
-      padding:20px;
-    }
-
-    h1,h2,h3,p{margin-top:0}
-    .panel{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
-      margin-bottom:14px;
-      box-shadow:0 8px 24px var(--shadow);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:12px;
-    }
-
-    .progress{
-      height:12px;
-      background:#1a2420;
-      border-radius:999px;
-      overflow:hidden;
-      margin:8px 0 10px;
-    }
-
-    .progress div{
-      height:100%;
-      background:linear-gradient(90deg,#d4ff8a,var(--accent));
-      border-radius:inherit;
-      transition:width .25s ease;
-    }
-
-    input,select,button{
-      padding:10px;
-      border-radius:8px;
-      border:1px solid var(--line);
-      background:#18221e;
-      color:var(--text);
-    }
-
-    button{
-      cursor:pointer;
-      background:var(--accent);
-      color:#0f120f;
-      border:none;
-      font-weight:700;
-      margin:4px 6px 0 0;
-    }
-
-    button.secondary{
-      background:#1d2b26;
-      color:var(--text);
-      border:1px solid var(--line);
-    }
-
-    .row{
-      margin-bottom:12px;
-      padding:10px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#171f1c;
-    }
-
-    .row > div{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .row input,
-    .row select{
-      flex:1 1 120px;
-      min-width:0;
-    }
-
-    .row .failure{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      min-width:140px;
-    }
-
-    .rank-card{
-      padding:12px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .rank-card:last-child{
-      border-bottom:none;
-    }
-
-    .small{
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    #overallRank{
-      font-weight:800;
-      font-size:48px;
-      line-height:1;
-      letter-spacing:1px;
-    }
-
-    .meta-line{
-      display:flex;
-      justify-content:space-between;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .pill{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#1d2b26;
-      border:1px solid var(--line);
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    .empty{
-      color:var(--muted);
-      font-style:italic;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRONROOT — Train. Log. Rise.</title>
+<style>
+:root{--bg:#0a0d0c;--panel:#111715;--panel2:#151c19;--line:#26332e;--text:#edf3ef;--muted:#94a59d;--accent:#b9f36b;--accent2:#7bdc65;--danger:#ff7272;--shadow:0 12px 40px #0008}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#203020 0,#0a0d0c 35%);color:var(--text);font:15px/1.45 Inter,system-ui,Segoe UI,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:12px;align-items:center}.mascot{width:48px;height:48px;border-radius:14px;background:var(--accent);display:grid;place-items:center;color:#10160d;font-size:27px;font-weight:900;box-shadow:0 0 30px #b9f36b22}.brand h1{font-size:21px;letter-spacing:2px;margin:0}.brand small{color:var(--muted)}nav{display:flex;gap:6px;flex-wrap:wrap}nav button,.ghost{background:transparent;color:var(--muted);border:1px solid transparent;padding:9px 12px;border-radius:10px}nav button.active,nav button:hover{background:#18211d;color:var(--text);border-color:var(--line)}
+.view{display:none}.view.active{display:block}.hero{background:linear-gradient(135deg,#162019,#101513);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.4fr .6fr;gap:20px}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:2px;font-size:12px}.hero h2{font-size:38px;line-height:1.02;margin:9px 0}.hero p{color:var(--muted);max-width:650px}.rankbig{display:grid;place-items:center;border-left:1px solid var(--line)}.rank{font-size:28px;font-weight:900;color:var(--accent)}.sub{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px}.card h3{margin:0 0 8px}.stat{font-size:28px;font-weight:850}.muted{color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{min-width:0}label{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:700}input,select{background:#0b100e;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;outline:none}input:focus,select:focus{border-color:var(--accent)}.primary{background:var(--accent);color:#11180e;border:0;padding:10px 14px;border-radius:10px;font-weight:850}.danger{color:var(--danger)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#1b2821;color:var(--accent);font-weight:800;font-size:12px}.log-head{display:grid;grid-template-columns:1fr 90px 90px 90px 42px;gap:7px;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 5px}.exercise{display:grid;grid-template-columns:1fr 90px 90px 90px 42px;gap:7px;margin:7px 0}.exercise input{width:100%}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{min-height:78px;background:#0e1411;border:1px solid var(--line);border-radius:8px;padding:7px}.day b{font-size:12px}.done{box-shadow:inset 0 -4px 0 var(--accent)}.today{outline:2px solid var(--accent)}.heat{height:9px;border-radius:10px;background:#26332e;overflow:hidden}.heat i{display:block;height:100%;background:var(--accent);width:0}.note{font-size:12px;color:var(--muted)}.empty{padding:30px;text-align:center;color:var(--muted)}.toast{position:fixed;bottom:18px;right:18px;background:#eaf8df;color:#0c140b;padding:12px 15px;border-radius:12px;font-weight:750;transform:translateY(100px);transition:.25s;z-index:9}.toast.show{transform:translateY(0)}@media(max-width:850px){.hero,.two{grid-template-columns:1fr}.rankbig{border-left:0;border-top:1px solid var(--line);padding-top:18px}.grid{grid-template-columns:repeat(2,1fr)}.three{grid-template-columns:1fr}.exercise{grid-template-columns:1fr 70px 70px 70px 38px}}@media(max-width:560px){.app{padding:12px}.grid{grid-template-columns:1fr 1fr}.hero h2{font-size:30px}.exercise{grid-template-columns:1fr 1fr}.exercise button{grid-column:auto}}
+</style>
 </head>
 <body>
 <div class="app">
-  <h1>IRONROOT</h1>
+<header class="top"><div class="brand"><div class="mascot">▲</div><div><h1>IRONROOT</h1><small>Train. Log. Rise.</small></div></div><nav id="nav">
+<button data-view="dashboard" class="active">Dashboard</button><button data-view="log">Log workout</button><button data-view="history">History</button><button data-view="calendar">Calendar</button><button data-view="profile">Profile</button>
+</nav></header>
 
-  <div class="panel">
-    <div class="meta-line">
-      <h2>Overall Rank</h2>
-      <span class="pill" id="sessionCount">0 workouts</span>
-    </div>
-    <div id="overallRank">AIR I</div>
-    <div class="progress"><div id="overallBar" style="width:0%"></div></div>
-    <p id="overallDetail"></p>
-  </div>
+<main>
+<section id="dashboard" class="view active">
+<div class="hero"><div><div class="eyebrow">NO SUBSCRIPTION. NO BS.</div><h2>Earn your rank.<br>Don't guess it.</h2><p>IRONROOT turns your logged performance into a progression rank using age- and body-size-aware standards. It doesn't inflate scores just to make you feel good.</p><button class="primary" onclick="show('log')">Log today's workout →</button></div><div class="rankbig"><div class="rank" id="rank">AIR I</div><div class="sub" id="rankDetail">Start logging to establish your baseline</div></div></div>
+<div class="grid"><div class="card"><div class="muted">Workouts</div><div class="stat" id="workouts">0</div></div><div class="card"><div class="muted">Total volume</div><div class="stat" id="volume">0</div><div class="sub">lb · weighted sets</div></div><div class="card"><div class="muted">Best session</div><div class="stat" id="best">—</div></div><div class="card"><div class="muted">Streak</div><div class="stat" id="streak">0</div><div class="sub">days</div></div></div>
+<div class="two"><div class="panel"><h3>Exercise rankings</h3><div id="exerciseRanks" class="empty">Log an exercise to see its individual rank.</div><p class="note">Ranks are calculated separately for each exercise. Your bench rank does not affect your curl rank.</p></div><div class="panel"><h3>Recent sessions</h3><div id="recent" class="empty">No workouts yet.</div></div></div>
+</section>
 
-  <div class="grid">
-    <div class="panel">
-      <h3>Exercise Rankings</h3>
-      <div id="exerciseRanks"></div>
-    </div>
+<section id="log" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><div><div class="eyebrow">WORKOUT LOGGER</div><h2 style="margin:4px 0">Log a session</h2></div><label>Date<input id="date" type="date"></label></div><div class="log-head"><div>Exercise</div><div>Weight (lb)</div><div>Reps</div><div>Sets</div><div></div></div><div id="exercises"></div><div class="row" style="margin-top:12px"><button class="ghost" onclick="addExercise()">+ Add exercise</button><button class="primary" onclick="saveWorkout()">Save workout</button></div><p class="note">Each exercise gets its <b>own rank</b>. Weight = load used for each set, reps = reps per set, sets = number of sets. For bodyweight movements, use 0 lb.</p></div></section>
 
-    <div class="panel">
-      <h3>Personal Records</h3>
-      <div id="prs"></div>
-    </div>
+<section id="history" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><h2>History</h2><button class="ghost" onclick="exportData()">Export data</button></div><div id="historyTable" class="empty">No logged workouts.</div></div></section>
 
-    <div class="panel">
-      <h3>Rank Guide</h3>
-      AIR = Complete beginner<br>
-      WOOD = Learning fundamentals<br>
-      STONE = Recreational lifter<br>
-      IRON = Consistent gym-goer<br>
-      STEEL = Stronger than average<br>
-      TITANIUM = Advanced<br>
-      DIAMOND = Exceptional<br>
-      ELITE = Top-level
-    </div>
-  </div>
+<section id="calendar" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><button class="ghost" onclick="moveMonth(-1)">←</button><h2 id="monthTitle"></h2><button class="ghost" onclick="moveMonth(1)">→</button></div><div class="calendar" id="calendarGrid"></div></div></section>
 
-  <div class="panel">
-    <h2>Workout Logger</h2>
-    <div id="rows"></div>
-    <button onclick="addRow()">Add Exercise</button>
-    <button onclick="saveWorkout()">Save Workout</button>
-    <button class="secondary" onclick="clearWorkout()">Clear All</button>
-  </div>
-</div>
+<section id="profile" class="view"><div class="panel"><div class="eyebrow">YOUR STANDARD</div><h2>Profile</h2><div class="three"><label>Age<input id="age" type="number" min="13" max="100"></label><label>Height (in)<input id="height" type="number" min="40" max="100"></label><label>Weight (lb)<input id="weight" type="number" min="60" max="500"></label></div><div class="three" style="margin-top:12px"><label>Training experience<select id="experience"><option value="0">New / returning</option><option value="1">Under 1 year</option><option value="2">1–3 years</option><option value="3">3+ years</option></select></label><label>Primary goal<select id="goal"><option>General strength</option><option>Muscle / physique</option><option>Athletic performance</option></select></label><div></div></div><button class="primary" style="margin-top:14px" onclick="saveProfile()">Save profile</button><p class="note">For users under 18, rankings are intentionally conservative and are not medical or professional athletic evaluations. Growth and development vary a lot at this age.</p></div></section>
+</main>
+</div><div class="toast" id="toast"></div>
 
 <script>
-const ranks = ["AIR","WOOD","STONE","IRON","STEEL","TITANIUM","DIAMOND","ELITE"];
-const storageKey = "ironroot_v2_workouts";
-
-const standards = {
-  "Bench Press": [0.65,0.85,1.0,1.3,1.7],
-  "Deadlift": [1.0,1.4,1.8,2.4,3.0],
-  "Squat": [0.9,1.2,1.6,2.1,2.7],
-  "Overhead Press": [0.35,0.5,0.7,0.9,1.1]
-};
-
-let workouts = loadWorkouts();
-
-function loadWorkouts(){
-  try{
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    return Array.isArray(saved) ? saved : [];
-  }catch{
-    return [];
-  }
+const KEY='ironroot_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{profile:{age:16,height:72,weight:138,experience:0,goal:'Muscle / physique'},workouts:[]};
+let month=new Date(); let editing=[];
+const names=['Push-up','Pull-up','Chest Press','Lat Pulldown','Squat','Leg Extension','Deadlift','Bench Press','Overhead Press','Biceps Curl','Run / Cardio'];
+const tiers=['AIR','WOOD','STONE','COPPER','IRON','GOLD','PLATINUM','DIAMOND'];
+const grades=['I','II','III'];
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function show(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id)); if(id==='dashboard')renderDash();if(id==='history')renderHistory();if(id==='calendar')renderCalendar();if(id==='profile')loadProfile();}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.view));
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}
+function addExercise(d={name:'Push-up',weight:0,reps:10,sets:3,time:0}){editing.push({...d});renderExercises()}
+function renderExercises(){document.getElementById('exercises').innerHTML=editing.map((e,i)=>`<div class="exercise"><select onchange="editing[${i}].name=this.value">${names.map(n=>`<option ${n===e.name?'selected':''}>${n}</option>`).join('')}</select><input type="number" min="0" step="0.5" value="${e.weight}" onchange="editing[${i}].weight=+this.value" placeholder="lb"><input type="number" min="0" value="${e.reps}" onchange="editing[${i}].reps=+this.value" placeholder="reps"><input type="number" min="0" value="${e.sets}" onchange="editing[${i}].sets=+this.value" placeholder="sets"><button class="ghost danger" onclick="editing.splice(${i},1);renderExercises()">×</button></div>`).join('')}
+function initLog(){document.getElementById('date').value=new Date().toISOString().slice(0,10);if(!editing.length)addExercise()}
+function saveWorkout(){let good=editing.filter(e=>e.name&&e.reps>0&&e.sets>0);if(!good.length)return toast('Add at least one exercise.');let total=good.reduce((s,e)=>s+e.weight*e.reps*e.sets,0);let score=scoreWorkout(good);state.workouts.unshift({id:crypto.randomUUID(),date:document.getElementById('date').value,exercises:good,total,score});save();editing=[];toast('Workout saved. Rank updated.');show('dashboard')}
+function profileFactor(){let p=state.profile;let age=Math.max(13,Math.min(60,+p.age||16));let w=Math.max(70,+p.weight||138);let h=Math.max(50,+p.height||72);return {w,h,age,ageF:age<18?0.88:age<25?1:age<35?1.03:1.0}}
+function exerciseScore(e){
+ let p=profileFactor(),name=e.name.toLowerCase();
+ let base=e.weight>0 ? (e.weight*e.reps*e.sets)/Math.max(1,p.w) : (e.reps*e.sets);
+ let standards={
+  'bench press':0.45,'chest press':0.42,'deadlift':0.9,'squat':0.75,
+  'leg extension':0.65,'lat pulldown':0.48,'overhead press':0.30,
+  'biceps curl':0.20,'pull-up':e.weight>0?0.5:0.32,'push-up':0.22,'run / cardio':0.1
+ };
+ let k=standards[name]||0.25;
+ let repQuality=Math.min(1.2,Math.max(.45,e.reps/10));
+ let relative=(base/Math.max(.1,k))*p.ageF;
+ return Math.min(100,relative*42*repQuality);
 }
-
-function saveWorkouts(){
-  localStorage.setItem(storageKey, JSON.stringify(workouts));
+function rankFor(s){
+ let idx=Math.max(0,Math.min(26,Math.floor(s/3.55)));
+ if(idx<24){let t=Math.floor(idx/3),g=grades[idx%3];return {label:tiers[t]+' '+g,pct:idx/26*100}}
+ return {label:['ELITE ATHLETE','PURE COLEMAN','ABSOLUTE ARNOLD'][idx-24],pct:idx/26*100}
 }
-
-function est1RM(weight, reps){
-  if (!weight || !reps) return 0;
-  return weight * (1 + reps / 30);
+function workoutRankMap(){
+ let map={};
+ state.workouts.forEach(w=>w.exercises.forEach(e=>{
+   let score=exerciseScore(e), key=e.name;
+   if(!map[key] || score>map[key].score) map[key]={score,rank:rankFor(score),date:w.date,detail:e};
+ }));
+ return map;
 }
-
-function rankLabelFromScore(score){
-  const idx = Math.min(Math.floor(score / 12.5), ranks.length - 1);
-  const label = ranks[idx];
-  return label + " " + String((score % 12.5 >= 0 ? 1 : 0));
-}
-
-function scoreFromRepThresholds(reps, arr){
-  let tier = 0;
-  while (tier < arr.length && reps >= arr[tier]) tier++;
-  const clampedTier = Math.min(tier, arr.length);
-  const score = Math.min(100, (clampedTier / arr.length) * 100);
-  return {
-    score,
-    label: ranks[Math.min(clampedTier, ranks.length - 1)]
-  };
-}
-
-function exerciseRank(ex, bw = 150){
-  if (ex.name === "Push-up"){
-    return scoreFromRepThresholds(ex.reps, [10,20,40,70,100]);
-  }
-
-  if (ex.name === "Pull-up"){
-    return scoreFromRepThresholds(ex.reps, [2,6,12,20,30]);
-  }
-
-  const s = standards[ex.name];
-  if (!s) return { score: 10, label: "AIR" };
-
-  const rel = est1RM(ex.weight, ex.reps) / bw;
-  let tier = 0;
-  while (tier < s.length && rel >= s[tier]) tier++;
-
-  const score = Math.min(100, (rel / s[s.length - 1]) * 100);
-  return {
-    score,
-    label: ranks[Math.min(tier, ranks.length - 1)]
-  };
-}
-
-function addRow(data = {}){
-  const d = document.createElement("div");
-  d.className = "row";
-
-  const name = data.name || "Bench Press";
-  const weight = data.weight || "";
-  const reps = data.reps || "";
-  const sets = data.sets || 3;
-  const failure = !!data.failure;
-
-  d.innerHTML = `
-    <div>
-      <select class="name">
-        <option ${name === "Bench Press" ? "selected" : ""}>Bench Press</option>
-        <option ${name === "Deadlift" ? "selected" : ""}>Deadlift</option>
-        <option ${name === "Squat" ? "selected" : ""}>Squat</option>
-        <option ${name === "Overhead Press" ? "selected" : ""}>Overhead Press</option>
-        <option ${name === "Push-up" ? "selected" : ""}>Push-up</option>
-        <option ${name === "Pull-up" ? "selected" : ""}>Pull-up</option>
-      </select>
-      <input class="weight" type="number" value="${weight}" placeholder="Weight">
-      <input class="reps" type="number" value="${reps}" placeholder="Reps">
-      <input class="sets" type="number" value="${sets}" placeholder="Sets">
-      <label class="failure">
-        <input class="failure-box" type="checkbox" ${failure ? "checked" : ""}>
-        Till Failure
-      </label>
-      <button class="secondary remove-row" type="button">Remove</button>
-    </div>
-  `;
-
-  d.querySelector(".remove-row").addEventListener("click", () => {
-    d.remove();
-  });
-
-  document.getElementById("rows").appendChild(d);
-}
-
 function saveWorkout(){
-  const list = [];
-
-  document.querySelectorAll("#rows > .row").forEach(r => {
-    const name = r.querySelector(".name").value;
-    const weight = +r.querySelector(".weight").value || 0;
-    const reps = +r.querySelector(".reps").value || 0;
-    const sets = +r.querySelector(".sets").value || 0;
-    const failure = r.querySelector(".failure-box").checked;
-
-    if (name && (weight > 0 || reps > 0 || sets > 0)) {
-      list.push({ name, weight, reps, sets, failure });
-    }
-  });
-
-  workouts.push(...list);
-  saveWorkouts();
-  render();
-  renderRows();
+ let good=editing.filter(e=>e.name&&e.reps>0&&e.sets>0);
+ if(!good.length)return toast('Add at least one exercise.');
+ let total=good.reduce((s,e)=>s+e.weight*e.reps*e.sets,0);
+ let exerciseScores=good.map(e=>({name:e.name,score:Math.round(exerciseScore(e)),rank:rankFor(exerciseScore(e)).label}));
+ state.workouts.unshift({id:crypto.randomUUID(),date:document.getElementById('date').value,exercises:good,total,exerciseScores});
+ save();editing=[];toast('Workout saved. Every exercise has its own rank.');show('dashboard')
 }
-
-function clearWorkout(){
-  workouts = [];
-  saveWorkouts();
-  render();
-  renderRows();
+function renderDash(){
+ let ws=state.workouts;
+ document.getElementById('workouts').textContent=ws.length;
+ document.getElementById('volume').textContent=Math.round(ws.reduce((a,w)=>a+w.total,0)).toLocaleString();
+ let map=workoutRankMap(), entries=Object.entries(map);
+ let strongest=entries.length?entries.reduce((a,b)=>a[1].score>b[1].score?a:b):null;
+ document.getElementById('best').textContent=strongest?strongest[1].rank.label:'—';
+ document.getElementById('rank').textContent=strongest?strongest[1].rank.label:'AIR I';
+ document.getElementById('rankDetail').textContent=strongest?`${strongest[0]} · best logged score ${Math.round(strongest[1].score)}/100`:'Log an exercise to establish your baseline';
+ let streak=0;
+ if(ws.length){let set=new Set(ws.map(w=>w.date));let d=new Date();while(set.has(d.toISOString().slice(0,10))){streak++;d.setDate(d.getDate()-1)}}
+ document.getElementById('streak').textContent=streak;
+ document.getElementById('exerciseRanks').innerHTML=entries.length?
+ entries.sort((a,b)=>b[1].score-a[1].score).map(([name,x])=>`<div class="row" style="justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)"><div><b>${name}</b><div class="sub">Best logged: ${x.detail.weight} lb × ${x.detail.reps} reps × ${x.detail.sets} sets</div></div><span class="pill">${x.rank.label}</span></div>`).join('')
+ :'<div class="empty">No exercises ranked yet.</div>';
+ document.getElementById('recent').innerHTML=ws.slice(0,5).map(w=>`<div class="row" style="justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)"><span>${w.date}</span><span class="sub">${w.exercises.length} exercise${w.exercises.length===1?'':'s'}</span></div>`).join('')||'<div class="empty">No workouts yet.</div>';
 }
-
-function renderRows(){
-  const rows = document.getElementById("rows");
-  rows.innerHTML = "";
-  const saved = loadWorkouts();
-  if (saved.length) {
-    saved.forEach(item => addRow(item));
-  } else {
-    addRow();
-  }
-}
-
-function render(){
-  let best = 0;
-  let bestLabel = "AIR I";
-  let html = "";
-  const prs = {};
-
-  workouts.forEach(w => {
-    const r = exerciseRank(w);
-    if (r.score > best){
-      best = r.score;
-      bestLabel = r.label;
-    }
-
-    html += `
-      <div class="rank-card">
-        <b>${w.name}</b> - ${r.label}<br>
-        <div class="small">${w.weight} lb × ${w.reps} reps ${w.sets} set${w.sets === 1 ? "" : "s"} ${w.failure ? "• Failure ✓" : ""}</div>
-        <div class="progress"><div style="width:${Math.min(100, r.score)}%"></div></div>
-      </div>
-    `;
-
-    const current = prs[w.name];
-    const candidate = Number(w.weight) || 0;
-    if (!current || candidate > current) prs[w.name] = candidate;
-  });
-
-  document.getElementById("exerciseRanks").innerHTML = html || "<div class='empty'>No exercises logged</div>";
-  document.getElementById("overallRank").textContent = bestLabel;
-  document.getElementById("overallBar").style.width = best + "%";
-  document.getElementById("overallDetail").textContent = best > 0
-    ? Math.round(best) + "% toward next rank"
-    : "Your rank will appear here after your first entry.";
-
-  const prHtml = Object.entries(prs).length
-    ? Object.entries(prs).map(([k,v]) => `${k}: ${v} lb`).join("<br>")
-    : "<div class='empty'>No personal records yet</div>";
-
-  document.getElementById("prs").innerHTML = prHtml;
-  document.getElementById("sessionCount").textContent = workouts.length + (workouts.length === 1 ? " workout" : " workouts");
-
-  saveWorkouts();
-}
-
-renderRows();
-render();
+function renderHistory(){let el=document.getElementById('historyTable');if(!state.workouts.length){el.innerHTML='<div class="empty">No logged workouts.</div>';return}el.innerHTML=`<table><thead><tr><th>Date</th><th>Exercises & individual ranks</th><th>Volume</th></tr></thead><tbody>${state.workouts.map(w=>`<tr><td>${w.date}</td><td>${Math.round(w.total).toLocaleString()} lb</td><td>${w.exercises.map(e=>{let r=rankFor(exerciseScore(e));return `<b>${e.name}</b> — ${e.weight} lb × ${e.reps} reps × ${e.sets} sets <span class="pill">${r.label}</span>`}).join('<br>')}</td></tr>`).join('')}</tbody></table>`}
+function renderCalendar(){let y=month.getFullYear(),m=month.getMonth();document.getElementById('monthTitle').textContent=month.toLocaleString(undefined,{month:'long',year:'numeric'});let first=new Date(y,m,1),last=new Date(y,m+1,0),start=first.getDay(),cells=[];for(let i=0;i<start;i++)cells.push('<div></div>');let dates=new Set(state.workouts.map(w=>w.date));for(let d=1;d<=last.getDate();d++){let ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,today=ds===new Date().toISOString().slice(0,10);cells.push(`<div class="day ${dates.has(ds)?'done':''} ${today?'today':''}"><b>${d}</b>${dates.has(ds)?'<div class="sub">✓ trained</div>':''}</div>`)}document.getElementById('calendarGrid').innerHTML=cells.join('')}
+function moveMonth(n){month.setMonth(month.getMonth()+n);renderCalendar()}
+function loadProfile(){let p=state.profile;for(let k of ['age','height','weight','experience','goal'])document.getElementById(k).value=p[k]}
+function saveProfile(){state.profile={age:+age.value,height:+height.value,weight:+weight.value,experience:+experience.value,goal:goal.value};save();toast('Profile saved.');show('dashboard')}
+function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ironroot-data.json';a.click();URL.revokeObjectURL(a.href)}
+initLog();renderDash();renderExercises();
 </script>
 </body>
 </html>
