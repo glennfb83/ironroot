@@ -5,109 +5,1122 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IRONROOT — Train. Log. Rise.</title>
 <style>
-:root{--bg:#0a0d0c;--panel:#111715;--panel2:#151c19;--line:#26332e;--text:#edf3ef;--muted:#94a59d;--accent:#b9f36b;--accent2:#7bdc65;--danger:#ff7272;--shadow:0 12px 40px #0008}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#203020 0,#0a0d0c 35%);color:var(--text);font:15px/1.45 Inter,system-ui,Segoe UI,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1250px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:12px;align-items:center}.mascot{width:48px;height:48px;border-radius:14px;background:var(--accent);display:grid;place-items:center;color:#10160d;font-size:27px;font-weight:900;box-shadow:0 0 30px #b9f36b22}.brand h1{font-size:21px;letter-spacing:2px;margin:0}.brand small{color:var(--muted)}nav{display:flex;gap:6px;flex-wrap:wrap}nav button,.ghost{background:transparent;color:var(--muted);border:1px solid transparent;padding:9px 12px;border-radius:10px}nav button.active,nav button:hover{background:#18211d;color:var(--text);border-color:var(--line)}
-.view{display:none}.view.active{display:block}.hero{background:linear-gradient(135deg,#162019,#101513);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.4fr .6fr;gap:20px}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:2px;font-size:12px}.hero h2{font-size:38px;line-height:1.02;margin:9px 0}.hero p{color:var(--muted);max-width:650px}.rankbig{display:grid;place-items:center;border-left:1px solid var(--line)}.rank{font-size:28px;font-weight:900;color:var(--accent)}.sub{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px}.card h3{margin:0 0 8px}.stat{font-size:28px;font-weight:850}.muted{color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{min-width:0}label{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:700}input,select{background:#0b100e;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;outline:none}input:focus,select:focus{border-color:var(--accent)}.primary{background:var(--accent);color:#11180e;border:0;padding:10px 14px;border-radius:10px;font-weight:850}.danger{color:var(--danger)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#1b2821;color:var(--accent);font-weight:800;font-size:12px}.log-head{display:grid;grid-template-columns:1fr 90px 90px 90px 42px;gap:7px;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 5px}.exercise{display:grid;grid-template-columns:1fr 90px 90px 90px 42px;gap:7px;margin:7px 0}.exercise input{width:100%}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{min-height:78px;background:#0e1411;border:1px solid var(--line);border-radius:8px;padding:7px}.day b{font-size:12px}.done{box-shadow:inset 0 -4px 0 var(--accent)}.today{outline:2px solid var(--accent)}.heat{height:9px;border-radius:10px;background:#26332e;overflow:hidden}.heat i{display:block;height:100%;background:var(--accent);width:0}.note{font-size:12px;color:var(--muted)}.empty{padding:30px;text-align:center;color:var(--muted)}.toast{position:fixed;bottom:18px;right:18px;background:#eaf8df;color:#0c140b;padding:12px 15px;border-radius:12px;font-weight:750;transform:translateY(100px);transition:.25s;z-index:9}.toast.show{transform:translateY(0)}@media(max-width:850px){.hero,.two{grid-template-columns:1fr}.rankbig{border-left:0;border-top:1px solid var(--line);padding-top:18px}.grid{grid-template-columns:repeat(2,1fr)}.three{grid-template-columns:1fr}.exercise{grid-template-columns:1fr 70px 70px 70px 38px}}@media(max-width:560px){.app{padding:12px}.grid{grid-template-columns:1fr 1fr}.hero h2{font-size:30px}.exercise{grid-template-columns:1fr 1fr}.exercise button{grid-column:auto}}
+  :root{
+    --bg:#090d10;
+    --bg-2:#0f1717;
+    --panel:rgba(17,24,24,0.9);
+    --panel-strong:#131d1d;
+    --panel-soft:#182522;
+    --line:rgba(152,170,166,0.22);
+    --text:#edf3ef;
+    --muted:#a7b8b2;
+    --muted-2:#7d8d89;
+    --accent:#d7ff72;
+    --accent-2:#8be98b;
+    --orange:#ffb86b;
+    --amber:#ffd166;
+    --red:#ff6b6b;
+    --shadow:0 22px 60px rgba(0,0,0,0.42);
+    --glow:0 0 0 1px rgba(255,255,255,0.03), 0 18px 40px rgba(16,25,22,0.8);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font:15px/1.45 "Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(120, 156, 102, 0.16), transparent 38%),
+      radial-gradient(circle at 85% 15%, rgba(232, 105, 74, 0.18), transparent 28%),
+      linear-gradient(180deg, #0a0d11 0%, #090d10 100%);
+    color:var(--text);
+    min-height:100vh;
+  }
+
+  button,input,select{font:inherit}
+  button{cursor:pointer}
+  a{color:inherit;text-decoration:none}
+
+  .app{
+    max-width:1280px;
+    margin:0 auto;
+    padding:24px 20px 40px;
+  }
+
+  .top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 18px 14px;
+    margin-bottom:18px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(18,24,25,0.92), rgba(11,16,17,0.90));
+    box-shadow:var(--glow);
+    position:sticky;
+    top:12px;
+    backdrop-filter:blur(14px);
+    z-index:10;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:0;
+  }
+
+  .mascot{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    font-weight:900;
+    font-size:1.25rem;
+    color:#0a100d;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow:0 12px 26px rgba(137,214,124,0.35);
+    transform:rotate(-12deg);
+  }
+
+  .brand h1{
+    margin:0;
+    font-size:clamp(1.15rem, 2vw, 2rem);
+    letter-spacing:0.12em;
+    font-weight:900;
+  }
+
+  .brand small{
+    display:block;
+    color:var(--muted);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:0.7rem;
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  nav button{
+    border:1px solid transparent;
+    background:rgba(255,255,255,0.02);
+    color:var(--muted);
+    border-radius:12px;
+    padding:10px 14px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    transition:all .18s ease;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+
+  nav button:hover{
+    border-color:var(--line);
+    color:var(--text);
+    background:rgba(255,255,255,0.03);
+  }
+
+  nav button.active{
+    background:linear-gradient(135deg, rgba(212,255,84,0.18), rgba(130,232,121,0.12));
+    border-color:rgba(183,255,72,0.26);
+    color:var(--text);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02);
+  }
+
+  main{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .view{display:none}
+  .view.active{display:block}
+
+  .hero{
+    display:grid;
+    grid-template-columns:1.4fr 0.9fr;
+    gap:18px;
+    padding:26px;
+    border-radius:28px;
+    border:1px solid var(--line);
+    background:
+      linear-gradient(135deg, rgba(20,31,31,0.96), rgba(11,17,18,0.95)),
+      radial-gradient(circle at top right, rgba(146, 223, 122, 0.12), transparent 36%);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:auto -80px -100px auto;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(135,219,111,0.13), transparent 62%);
+    pointer-events:none;
+  }
+
+  .eyebrow{
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.72rem;
+    font-weight:800;
+  }
+
+  .hero h2{
+    margin:10px 0 12px;
+    font-size:clamp(2rem, 3vw, 3.5rem);
+    line-height:0.93;
+    letter-spacing:-0.06em;
+    max-width:620px;
+  }
+
+  .hero p{
+    margin:0;
+    max-width:620px;
+    color:var(--muted);
+    font-size:1.02rem;
+    line-height:1.6;
+  }
+
+  .hero-side{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0 0;
+  }
+
+  .mini-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    color:var(--text);
+    background:rgba(255,255,255,0.02);
+    width:max-content;
+  }
+
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow:0 0 18px rgba(146, 223, 122, 0.8);
+  }
+
+  .hero-card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(16,22,22,0.9), rgba(10,14,14,0.94));
+    border-radius:18px;
+    padding:16px;
+    box-shadow:var(--glow);
+  }
+
+  .hero-card .label{
+    color:var(--muted);
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+
+  .hero-card .big{
+    margin-top:8px;
+    font-size:2.2rem;
+    font-weight:900;
+    letter-spacing:-0.08em;
+  }
+
+  .hero-card .small{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+    margin-top:18px;
+  }
+
+  .card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(18,25,25,0.96), rgba(12,17,17,0.92));
+    border-radius:20px;
+    box-shadow:var(--glow);
+    padding:18px 18px 16px;
+    min-height:116px;
+  }
+
+  .muted{
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+    font-weight:700;
+  }
+
+  .stat{
+    font-size: clamp(1.8rem, 2vw, 2.5rem);
+    line-height:1;
+    margin-top:14px;
+    font-weight:900;
+    letter-spacing:-0.06em;
+  }
+
+  .panel{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(17,23,23,0.96), rgba(12,17,17,0.92));
+    border-radius:22px;
+    box-shadow:var(--glow);
+    padding:20px;
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1.2fr 0.9fr;
+    gap:18px;
+  }
+
+  h2,h3,h4{
+    margin:0;
+    letter-spacing:-0.04em;
+  }
+
+  .row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .space{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
+
+  .list{
+    display:grid;
+    gap:12px;
+    margin-top:14px;
+  }
+
+  .item{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .item:last-child{border-bottom:none}
+
+  .item .name{
+    font-weight:700;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:96px;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:linear-gradient(135deg, rgba(216,255,114,0.12), rgba(143,235,121,0.08));
+    color:var(--text);
+    font-size:0.74rem;
+    letter-spacing:0.08em;
+    font-weight:800;
+    text-transform:uppercase;
+  }
+
+  .empty{
+    color:var(--muted);
+    padding:18px 0 8px;
+  }
+
+  .note{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin-top:12px;
+  }
+
+  .rank-ladder{
+    display:grid;
+    gap:10px;
+    margin-top:14px;
+  }
+
+  .rank-row{
+    display:grid;
+    grid-template-columns:120px 1fr auto;
+    gap:12px;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.02);
+  }
+
+  .rank-row strong{
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+
+  .rank-row small{
+    color:var(--muted);
+    display:block;
+    margin-top:4px;
+  }
+
+  .rank-row .percent{
+    color:var(--accent);
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-weight:800;
+  }
+
+  .ghost{
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);
+    color:var(--text);
+    border-radius:12px;
+    padding:10px 14px;
+    font-weight:700;
+  }
+
+  .primary{
+    background:linear-gradient(135deg, rgba(215,255,114,0.22), rgba(115,226,127,0.18));
+    border:1px solid rgba(196,255,84,0.28);
+    color:var(--text);
+    border-radius:12px;
+    padding:10px 14px;
+    font-weight:800;
+  }
+
+  .form-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+    margin-top:18px;
+  }
+
+  label{
+    display:block;
+    color:var(--muted);
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-weight:700;
+  }
+
+  input,select{
+    width:100%;
+    margin-top:8px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,0.02);
+    color:var(--text);
+    padding:11px 12px;
+    outline:none;
+  }
+
+  input:focus,select:focus{
+    border-color:rgba(212,255,114,0.34);
+    box-shadow:0 0 0 3px rgba(212,255,114,0.08);
+  }
+
+  .exercise{
+    display:grid;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .exercise:last-child{border-bottom:none}
+  .exercise-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr .7fr;gap:8px}
+  .exercise-actions{display:flex;justify-content:flex-end}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    margin-top:10px;
+  }
+
+  td,th{
+    text-align:left;
+    padding:12px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+
+  th{
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.72rem;
+    font-weight:800;
+  }
+
+  .history-wrap{
+    overflow:auto;
+  }
+
+  .calendar-head{
+    display:grid;
+    grid-template-columns:40px 1fr 40px;
+    gap:10px;
+    align-items:center;
+    margin-bottom:10px;
+  }
+
+  .days{
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .day-name{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:700;
+    padding-bottom:6px;
+  }
+
+  .day{
+    min-height:84px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,0.015);
+    padding:8px 8px 6px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:4px;
+  }
+
+  .day.muted{
+    opacity:0.45;
+  }
+
+  .day .date{
+    font-size:0.72rem;
+    color:var(--muted);
+    font-weight:700;
+  }
+
+  .day .markers{
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+    margin-top:auto;
+  }
+
+  .marker{
+    width:8px;height:8px;border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow:0 0 12px rgba(146,223,122,0.46);
+  }
+
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:26px;
+    transform:translateX(-50%) translateY(20px);
+    opacity:0;
+    pointer-events:none;
+    background:rgba(16,21,21,0.96);
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:12px 16px;
+    border-radius:999px;
+    box-shadow:var(--shadow);
+    transition:all .18s ease;
+    z-index:100;
+    font-weight:700;
+  }
+
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 980px){
+    .hero{grid-template-columns:1fr}
+    .two-col{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+
+  @media (max-width: 640px){
+    .top{
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    nav{
+      justify-content:flex-start;
+      width:100%;
+    }
+    .stats{grid-template-columns:1fr}
+    .form-grid{grid-template-columns:1fr}
+    .exercise-grid{grid-template-columns:1fr 1fr}
+    .rank-row{grid-template-columns:1fr}
+    .calendar-head{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand"><div class="mascot">▲</div><div><h1>IRONROOT</h1><small>Train. Log. Rise.</small></div></div><nav id="nav">
-<button data-view="dashboard" class="active">Dashboard</button><button data-view="log">Log workout</button><button data-view="history">History</button><button data-view="calendar">Calendar</button><button data-view="profile">Profile</button>
-</nav></header>
+  <header class="top">
+    <div class="brand">
+      <div class="mascot">▲</div>
+      <div>
+        <h1>IRONROOT</h1>
+        <small>Train. Log. Rise.</small>
+      </div>
+    </div>
+    <nav id="nav">
+      <button data-view="dashboard" class="active">Dashboard</button>
+      <button data-view="log">Log workout</button>
+      <button data-view="history">History</button>
+      <button data-view="calendar">Calendar</button>
+      <button data-view="profile">Profile</button>
+    </nav>
+  </header>
 
-<main>
-<section id="dashboard" class="view active">
-<div class="hero"><div><div class="eyebrow">NO SUBSCRIPTION. NO BS.</div><h2>Earn your rank.<br>Don't guess it.</h2><p>IRONROOT turns your logged performance into a progression rank using age- and body-size-aware standards. It doesn't inflate scores just to make you feel good.</p><button class="primary" onclick="show('log')">Log today's workout →</button></div><div class="rankbig"><div class="rank" id="rank">AIR I</div><div class="sub" id="rankDetail">Start logging to establish your baseline</div></div></div>
-<div class="grid"><div class="card"><div class="muted">Workouts</div><div class="stat" id="workouts">0</div></div><div class="card"><div class="muted">Total volume</div><div class="stat" id="volume">0</div><div class="sub">lb · weighted sets</div></div><div class="card"><div class="muted">Best session</div><div class="stat" id="best">—</div></div><div class="card"><div class="muted">Streak</div><div class="stat" id="streak">0</div><div class="sub">days</div></div></div>
-<div class="two"><div class="panel"><h3>Exercise rankings</h3><div id="exerciseRanks" class="empty">Log an exercise to see its individual rank.</div><p class="note">Ranks are calculated separately for each exercise. Your bench rank does not affect your curl rank.</p></div><div class="panel"><h3>Recent sessions</h3><div id="recent" class="empty">No workouts yet.</div></div></div>
-</section>
+  <main>
+    <section id="dashboard" class="view active">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">No subscription. No bs.</div>
+          <h2>Earn your rank.<br>Don't guess it.</h2>
+          <p>IRONROOT turns your logged performance into a progression rank using age- and experience-adjusted standards, helping you see how your work stacks up over time.</p>
+        </div>
 
-<section id="log" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><div><div class="eyebrow">WORKOUT LOGGER</div><h2 style="margin:4px 0">Log a session</h2></div><label>Date<input id="date" type="date"></label></div><div class="log-head"><div>Exercise</div><div>Weight (lb)</div><div>Reps</div><div>Sets</div><div></div></div><div id="exercises"></div><div class="row" style="margin-top:12px"><button class="ghost" onclick="addExercise()">+ Add exercise</button><button class="primary" onclick="saveWorkout()">Save workout</button></div><p class="note">Each exercise gets its <b>own rank</b>. Weight = load used for each set, reps = reps per set, sets = number of sets. For bodyweight movements, use 0 lb.</p></div></section>
+        <div class="hero-side">
+          <div class="mini-badge">
+            <span class="dot"></span>
+            <span>Strength progression tracker</span>
+          </div>
 
-<section id="history" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><h2>History</h2><button class="ghost" onclick="exportData()">Export data</button></div><div id="historyTable" class="empty">No logged workouts.</div></div></section>
+          <div class="hero-card">
+            <div class="label">Current highest rank</div>
+            <div class="big" id="rank">AIR I</div>
+            <div class="small" id="rankDetail">Log an exercise to establish your baseline</div>
+          </div>
 
-<section id="calendar" class="view"><div class="panel"><div class="row" style="justify-content:space-between"><button class="ghost" onclick="moveMonth(-1)">←</button><h2 id="monthTitle"></h2><button class="ghost" onclick="moveMonth(1)">→</button></div><div class="calendar" id="calendarGrid"></div></div></section>
+          <div class="hero-card">
+            <div class="label">Best logged exercise</div>
+            <div class="big" id="best">—</div>
+            <div class="small">Strongest performance tracked</div>
+          </div>
+        </div>
+      </div>
 
-<section id="profile" class="view"><div class="panel"><div class="eyebrow">YOUR STANDARD</div><h2>Profile</h2><div class="three"><label>Age<input id="age" type="number" min="13" max="100"></label><label>Height (in)<input id="height" type="number" min="40" max="100"></label><label>Weight (lb)<input id="weight" type="number" min="60" max="500"></label></div><div class="three" style="margin-top:12px"><label>Training experience<select id="experience"><option value="0">New / returning</option><option value="1">Under 1 year</option><option value="2">1–3 years</option><option value="3">3+ years</option></select></label><label>Primary goal<select id="goal"><option>General strength</option><option>Muscle / physique</option><option>Athletic performance</option></select></label><div></div></div><button class="primary" style="margin-top:14px" onclick="saveProfile()">Save profile</button><p class="note">For users under 18, rankings are intentionally conservative and are not medical or professional athletic evaluations. Growth and development vary a lot at this age.</p></div></section>
-</main>
-</div><div class="toast" id="toast"></div>
+      <div class="stats">
+        <div class="card">
+          <div class="muted">Workouts</div>
+          <div class="stat" id="workouts">0</div>
+        </div>
+        <div class="card">
+          <div class="muted">Total volume</div>
+          <div class="stat" id="volume">0</div>
+        </div>
+        <div class="card">
+          <div class="muted">Streak</div>
+          <div class="stat" id="streak">0</div>
+        </div>
+        <div class="card">
+          <div class="muted">Best rank</div>
+          <div class="stat" id="bestStat">—</div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:18px;">
+        <div class="panel">
+          <div class="space">
+            <h3>Exercise rankings</h3>
+          </div>
+          <div id="exerciseRanks" class="empty">Log an exercise to see its individual rank.</div>
+          <p class="note">Ranks are calculated separately for each movement to keep your progress honest and specific.</p>
+        </div>
+
+        <div class="panel">
+          <div class="space">
+            <h3>Rank ladder</h3>
+          </div>
+          <div id="rankLegend" class="rank-ladder"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <div class="space">
+          <h3>Recent workouts</h3>
+        </div>
+        <div id="recent" class="list"></div>
+      </div>
+    </section>
+
+    <section id="log" class="view">
+      <div class="panel">
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <div class="eyebrow">Workout logger</div>
+            <h2 style="margin:4px 0 0">Log a session</h2>
+          </div>
+          <button class="ghost" onclick="show('dashboard')">Back to dashboard</button>
+        </div>
+
+        <div class="form-grid">
+          <label>Date
+            <input id="date" type="date">
+          </label>
+          <label>Goal
+            <select id="goal">
+              <option>Muscle / physique</option>
+              <option>Strength</option>
+              <option>General fitness</option>
+              <option>Endurance</option>
+            </select>
+          </label>
+          <label>Note
+            <input id="sessionNote" type="text" placeholder="Optional note">
+          </label>
+        </div>
+
+        <div class="panel" style="margin-top:16px; background:rgba(255,255,255,0.015);">
+          <div class="space">
+            <h3>Exercises</h3>
+            <button class="primary" onclick="addExercise()">+ Add exercise</button>
+          </div>
+          <div id="exercises" style="margin-top:12px;"></div>
+        </div>
+
+        <div class="row" style="justify-content:flex-end; margin-top:18px;">
+          <button class="primary" onclick="saveWorkout()">Save workout</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="history" class="view">
+      <div class="panel">
+        <div class="row" style="justify-content:space-between">
+          <h2>History</h2>
+          <button class="ghost" onclick="exportData()">Export data</button>
+        </div>
+        <div id="historyTable" class="history-wrap"></div>
+      </div>
+    </section>
+
+    <section id="calendar" class="view">
+      <div class="panel">
+        <div class="calendar-head">
+          <button class="ghost" onclick="moveMonth(-1)">←</button>
+          <h2 id="monthTitle" style="text-align:center"></h2>
+          <button class="ghost" onclick="moveMonth(1)">→</button>
+        </div>
+        <div id="calendarGrid" class="days"></div>
+      </div>
+    </section>
+
+    <section id="profile" class="view">
+      <div class="panel">
+        <div class="eyebrow">Your standard</div>
+        <h2 style="margin-top:6px;">Profile</h2>
+
+        <div class="form-grid" style="margin-top:18px;">
+          <label>Age
+            <input id="age" type="number" min="13" max="100">
+          </label>
+          <label>Height (in)
+            <input id="height" type="number" min="40" max="110">
+          </label>
+          <label>Weight (lb)
+            <input id="weight" type="number" min="70" max="400">
+          </label>
+          <label>Experience
+            <input id="experience" type="number" min="0" max="50">
+          </label>
+          <label>Goal
+            <select id="goalProfile">
+              <option>Muscle / physique</option>
+              <option>Strength</option>
+              <option>General fitness</option>
+              <option>Endurance</option>
+            </select>
+          </label>
+          <div></div>
+        </div>
+
+        <div class="row" style="justify-content:flex-end; margin-top:20px;">
+          <button class="primary" onclick="saveProfile()">Save profile</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 const KEY='ironroot_v1';
-let state=JSON.parse(localStorage.getItem(KEY)||'null')||{profile:{age:16,height:72,weight:138,experience:0,goal:'Muscle / physique'},workouts:[]};
-let month=new Date(); let editing=[];
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{
+  profile:{age:16,height:72,weight:138,experience:0,goal:'Muscle / physique'},
+  workouts:[]
+};
+
+let month=new Date();
+let editing=[];
+
 const names=['Push-up','Pull-up','Chest Press','Lat Pulldown','Squat','Leg Extension','Deadlift','Bench Press','Overhead Press','Biceps Curl','Run / Cardio'];
 const tiers=['AIR','WOOD','STONE','COPPER','IRON','GOLD','PLATINUM','DIAMOND'];
 const grades=['I','II','III'];
-function save(){localStorage.setItem(KEY,JSON.stringify(state));}
-function show(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===id)); if(id==='dashboard')renderDash();if(id==='history')renderHistory();if(id==='calendar')renderCalendar();if(id==='profile')loadProfile();}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.view));
-function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}
-function addExercise(d={name:'Push-up',weight:0,reps:10,sets:3,time:0}){editing.push({...d});renderExercises()}
-function renderExercises(){document.getElementById('exercises').innerHTML=editing.map((e,i)=>`<div class="exercise"><select onchange="editing[${i}].name=this.value">${names.map(n=>`<option ${n===e.name?'selected':''}>${n}</option>`).join('')}</select><input type="number" min="0" step="0.5" value="${e.weight}" onchange="editing[${i}].weight=+this.value" placeholder="lb"><input type="number" min="0" value="${e.reps}" onchange="editing[${i}].reps=+this.value" placeholder="reps"><input type="number" min="0" value="${e.sets}" onchange="editing[${i}].sets=+this.value" placeholder="sets"><button class="ghost danger" onclick="editing.splice(${i},1);renderExercises()">×</button></div>`).join('')}
-function initLog(){document.getElementById('date').value=new Date().toISOString().slice(0,10);if(!editing.length)addExercise()}
-function saveWorkout(){let good=editing.filter(e=>e.name&&e.reps>0&&e.sets>0);if(!good.length)return toast('Add at least one exercise.');let total=good.reduce((s,e)=>s+e.weight*e.reps*e.sets,0);let score=scoreWorkout(good);state.workouts.unshift({id:crypto.randomUUID(),date:document.getElementById('date').value,exercises:good,total,score});save();editing=[];toast('Workout saved. Rank updated.');show('dashboard')}
-function profileFactor(){let p=state.profile;let age=Math.max(13,Math.min(60,+p.age||16));let w=Math.max(70,+p.weight||138);let h=Math.max(50,+p.height||72);return {w,h,age,ageF:age<18?0.88:age<25?1:age<35?1.03:1.0}}
-function exerciseScore(e){
- let p=profileFactor(),name=e.name.toLowerCase();
- let base=e.weight>0 ? (e.weight*e.reps*e.sets)/Math.max(1,p.w) : (e.reps*e.sets);
- let standards={
-  'bench press':0.45,'chest press':0.42,'deadlift':0.9,'squat':0.75,
-  'leg extension':0.65,'lat pulldown':0.48,'overhead press':0.30,
-  'biceps curl':0.20,'pull-up':e.weight>0?0.5:0.32,'push-up':0.22,'run / cardio':0.1
- };
- let k=standards[name]||0.25;
- let repQuality=Math.min(1.2,Math.max(.45,e.reps/10));
- let relative=(base/Math.max(.1,k))*p.ageF;
- return Math.min(100,relative*42*repQuality);
+
+const rankDescriptions = [
+  { label:'AIR I', text:'Starting point. You are just beginning to build a base.'},
+  { label:'AIR II', text:'You are building consistency and basic strength.'},
+  { label:'AIR III', text:'Early progress is showing, but the foundation is still forming.'},
+  { label:'WOOD I', text:'Your work is becoming structured and repeatable.'},
+  { label:'WOOD II', text:'You are past the beginner phase and have real momentum.'},
+  { label:'WOOD III', text:'Strength is compounding and your base is growing.'},
+  { label:'STONE I', text:'You possess serious training discipline and stability.'},
+  { label:'STONE II', text:'Your body is adapting with noticeable power and control.'},
+  { label:'STONE III', text:'You are building durable strength and athletic capacity.'},
+  { label:'COPPER I', text:'You are outperforming the average beginner and training with intent.'},
+  { label:'COPPER II', text:'Your performance is consistent and increasingly advanced.'},
+  { label:'COPPER III', text:'You are entering the realm of real strength development.'},
+  { label:'IRON I', text:'A respected, capable lifter with proven work ethic.'},
+  { label:'IRON II', text:'You are operating at a strong, reliable level.'},
+  { label:'IRON III', text:'You have moved well beyond the early stages of progression.'},
+  { label:'GOLD I', text:'You are a high-level athlete with serious physical capability.'},
+  { label:'GOLD II', text:'Your performance is elite by general standards.'},
+  { label:'GOLD III', text:'You are producing exceptional, polished strength output.'},
+  { label:'PLATINUM I', text:'This is advanced, specialized, and highly competitive training.'},
+  { label:'PLATINUM II', text:'You are operating at a rare level of performance.'},
+  { label:'PLATINUM III', text:'You have reached a near-maximal physique and strength profile.'},
+  { label:'DIAMOND I', text:'A top-tier performance level with premium strength markers.'},
+  { label:'DIAMOND II', text:'You are among the most advanced lifters in the system.'},
+  { label:'DIAMOND III', text:'Your progress is elite-grade and highly developed.'},
+  { label:'ELITE ATHLETE', text:'You are operating at a championship-level standard.'},
+  { label:'PURE COLEMAN', text:'An absurdly strong, rare benchmark of power and output.'},
+  { label:'ABSOLUTE ARNOLD', text:'The top of the ladder. Legendary strength and stature.'}
+];
+
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
 }
-function rankFor(s){
- let idx=Math.max(0,Math.min(26,Math.floor(s/3.55)));
- if(idx<24){let t=Math.floor(idx/3),g=grades[idx%3];return {label:tiers[t]+' '+g,pct:idx/26*100}}
- return {label:['ELITE ATHLETE','PURE COLEMAN','ABSOLUTE ARNOLD'][idx-24],pct:idx/26*100}
+
+function show(id){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active', x.dataset.view===id));
 }
-function workoutRankMap(){
- let map={};
- state.workouts.forEach(w=>w.exercises.forEach(e=>{
-   let score=exerciseScore(e), key=e.name;
-   if(!map[key] || score>map[key].score) map[key]={score,rank:rankFor(score),date:w.date,detail:e};
- }));
- return map;
+
+function toast(t){
+  let x=document.getElementById('toast');
+  x.textContent=t;
+  x.classList.add('show');
+  setTimeout(()=>x.classList.remove('show'),1800);
 }
+
+function addExercise(d={name:'Push-up',weight:0,reps:10,sets:3,time:0}){
+  editing.push({...d});
+  renderExercises();
+}
+
+function renderExercises(){
+  document.getElementById('exercises').innerHTML = editing.map((e,i)=>`
+    <div class="exercise">
+      <div class="exercise-grid">
+        <div>
+          <label>Exercise
+            <select onchange="editing[${i}].name=this.value">
+              ${names.map(n=>`<option value="${n}" ${n===e.name?'selected':''}>${n}</option>`).join('')}
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Weight
+            <input type="number" value="${e.weight}" min="0" step="1" onchange="editing[${i}].weight=+this.value">
+          </label>
+        </div>
+        <div>
+          <label>Reps
+            <input type="number" value="${e.reps}" min="1" step="1" onchange="editing[${i}].reps=+this.value">
+          </label>
+        </div>
+        <div>
+          <label>Sets
+            <input type="number" value="${e.sets}" min="1" step="1" onchange="editing[${i}].sets=+this.value">
+          </label>
+        </div>
+      </div>
+      <div class="exercise-actions">
+        <button class="ghost" onclick="editing.splice(${i},1); renderExercises();">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function initLog(){
+  document.getElementById('date').value = new Date().toISOString().slice(0,10);
+  if(!editing.length) addExercise();
+}
+
 function saveWorkout(){
- let good=editing.filter(e=>e.name&&e.reps>0&&e.sets>0);
- if(!good.length)return toast('Add at least one exercise.');
- let total=good.reduce((s,e)=>s+e.weight*e.reps*e.sets,0);
- let exerciseScores=good.map(e=>({name:e.name,score:Math.round(exerciseScore(e)),rank:rankFor(exerciseScore(e)).label}));
- state.workouts.unshift({id:crypto.randomUUID(),date:document.getElementById('date').value,exercises:good,total,exerciseScores});
- save();editing=[];toast('Workout saved. Every exercise has its own rank.');show('dashboard')
+  let good = editing.filter(e=>e.name && e.reps>0 && e.sets>0);
+  if(!good.length) return toast('Add at least one exercise.');
+
+  let total = good.reduce((s,e)=>s + e.weight*e.reps*e.sets, 0);
+  let exerciseScores = good.map(e => {
+    const score = Math.round(exerciseScore(e));
+    return {name:e.name, score, rank:rankFor(score).label};
+  });
+
+  state.workouts.unshift({
+    id: crypto.randomUUID(),
+    date: document.getElementById('date').value,
+    note: document.getElementById('sessionNote').value,
+    goal: document.getElementById('goal').value,
+    exercises: good,
+    total,
+    exerciseScores
+  });
+
+  save();
+  editing = [];
+  toast('Workout saved. Every exercise has its own rank.');
+  show('dashboard');
+  renderDash();
+  renderHistory();
+  renderCalendar();
+  initLog();
 }
+
+function profileFactor(){
+  let p=state.profile;
+  let age=Math.max(13,Math.min(60,+p.age||16));
+  let w=Math.max(70,+p.weight||138);
+  let h=Math.max(50,+p.height||72);
+  return {
+    w,h,age,
+    ageF: age<18 ? 0.88 : age<25 ? 0.94 : age<40 ? 1 : 1.06
+  };
+}
+
+function exerciseScore(e){
+  let p=profileFactor(), name=e.name.toLowerCase();
+  let base=e.weight>0 ? (e.weight*e.reps*e.sets)/Math.max(1,p.w) : (e.reps*e.sets);
+  let standards={
+    'bench press':0.45,'chest press':0.42,'deadlift':0.9,'squat':0.75,
+    'leg extension':0.65,'lat pulldown':0.48,'overhead press':0.30,
+    'biceps curl':0.20,'pull-up':e.weight>0?0.5:0.32,'push-up':0.22,'run / cardio':0.1
+  };
+  let k=standards[name]||0.25;
+  let repQuality=Math.min(1.2,Math.max(.45,e.reps/10));
+  let relative=(base/Math.max(.1,k))*p.ageF;
+  return Math.min(100,relative*42*repQuality);
+}
+
+function rankFor(s){
+  let idx=Math.max(0,Math.min(26,Math.floor(s/3.55)));
+  if(idx<24){
+    let t=Math.floor(idx/3), g=grades[idx%3];
+    return {label:tiers[t]+' '+g,pct:idx/26*100}
+  }
+  return {label:['ELITE ATHLETE','PURE COLEMAN','ABSOLUTE ARNOLD'][idx-24],pct:idx/26*100}
+}
+
+function workoutRankMap(){
+  let map={};
+  state.workouts.forEach(w=>w.exercises.forEach(e=>{
+    let score=exerciseScore(e), key=e.name;
+    if(!map[key] || score>map[key].score) map[key]={score,rank:rankFor(score),date:w.date,detail:e};
+  }));
+  return map;
+}
+
 function renderDash(){
- let ws=state.workouts;
- document.getElementById('workouts').textContent=ws.length;
- document.getElementById('volume').textContent=Math.round(ws.reduce((a,w)=>a+w.total,0)).toLocaleString();
- let map=workoutRankMap(), entries=Object.entries(map);
- let strongest=entries.length?entries.reduce((a,b)=>a[1].score>b[1].score?a:b):null;
- document.getElementById('best').textContent=strongest?strongest[1].rank.label:'—';
- document.getElementById('rank').textContent=strongest?strongest[1].rank.label:'AIR I';
- document.getElementById('rankDetail').textContent=strongest?`${strongest[0]} · best logged score ${Math.round(strongest[1].score)}/100`:'Log an exercise to establish your baseline';
- let streak=0;
- if(ws.length){let set=new Set(ws.map(w=>w.date));let d=new Date();while(set.has(d.toISOString().slice(0,10))){streak++;d.setDate(d.getDate()-1)}}
- document.getElementById('streak').textContent=streak;
- document.getElementById('exerciseRanks').innerHTML=entries.length?
- entries.sort((a,b)=>b[1].score-a[1].score).map(([name,x])=>`<div class="row" style="justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)"><div><b>${name}</b><div class="sub">Best logged: ${x.detail.weight} lb × ${x.detail.reps} reps × ${x.detail.sets} sets</div></div><span class="pill">${x.rank.label}</span></div>`).join('')
- :'<div class="empty">No exercises ranked yet.</div>';
- document.getElementById('recent').innerHTML=ws.slice(0,5).map(w=>`<div class="row" style="justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)"><span>${w.date}</span><span class="sub">${w.exercises.length} exercise${w.exercises.length===1?'':'s'}</span></div>`).join('')||'<div class="empty">No workouts yet.</div>';
+  let ws=state.workouts;
+  document.getElementById('workouts').textContent=ws.length;
+  document.getElementById('volume').textContent=Math.round(ws.reduce((a,w)=>a+w.total,0)).toLocaleString();
+  document.getElementById('streak').textContent = (() => {
+    let streak=0;
+    if(ws.length){
+      let set=new Set(ws.map(w=>w.date));
+      let d=new Date();
+      while(set.has(d.toISOString().slice(0,10))){
+        streak++;
+        d.setDate(d.getDate()-1);
+      }
+    }
+    return streak;
+  })();
+
+  let map=workoutRankMap(), entries=Object.entries(map);
+  let strongest=entries.length ? entries.reduce((a,b)=>a[1].score>b[1].score?a:b) : null;
+
+  let bestLabel = strongest ? strongest[1].rank.label : 'AIR I';
+  let bestScore = strongest ? `${strongest[0]} · best logged score ${Math.round(strongest[1].score)}/100` : 'Log an exercise to establish your baseline';
+
+  document.getElementById('best').textContent = strongest ? strongest[1].rank.label : '—';
+  document.getElementById('rank').textContent = bestLabel;
+  document.getElementById('rankDetail').textContent = bestScore;
+  document.getElementById('bestStat').textContent = strongest ? strongest[1].rank.label : '—';
+
+  document.getElementById('exerciseRanks').innerHTML = entries.length ?
+    entries.sort((a,b)=>b[1].score-a[1].score).map(([name,x])=>`
+      <div class="item">
+        <div>
+          <div class="name">${name}</div>
+          <div class="note" style="margin-top:4px;">Best: ${Math.round(x.score)}/100</div>
+        </div>
+        <span class="pill">${x.rank.label}</span>
+      </div>
+    `).join('') :
+    '<div class=\"empty\">No exercises ranked yet.</div>';
+
+  document.getElementById('recent').innerHTML = ws.slice(0,5).map(w => `
+    <div class="item">
+      <div>
+        <div class="name">${w.date}</div>
+        <div class="note">${(w.exercises||[]).map(e=>e.name).slice(0,3).join(', ') || 'Workout logged'}</div>
+      </div>
+      <span class="pill">${w.total ? Math.round(w.total).toLocaleString() : '0'} lb</span>
+    </div>
+  `).join('') || '<div class=\"empty\">No recent workouts yet.</div>';
+
+  renderRankLegend();
 }
-function renderHistory(){let el=document.getElementById('historyTable');if(!state.workouts.length){el.innerHTML='<div class="empty">No logged workouts.</div>';return}el.innerHTML=`<table><thead><tr><th>Date</th><th>Exercises & individual ranks</th><th>Volume</th></tr></thead><tbody>${state.workouts.map(w=>`<tr><td>${w.date}</td><td>${Math.round(w.total).toLocaleString()} lb</td><td>${w.exercises.map(e=>{let r=rankFor(exerciseScore(e));return `<b>${e.name}</b> — ${e.weight} lb × ${e.reps} reps × ${e.sets} sets <span class="pill">${r.label}</span>`}).join('<br>')}</td></tr>`).join('')}</tbody></table>`}
-function renderCalendar(){let y=month.getFullYear(),m=month.getMonth();document.getElementById('monthTitle').textContent=month.toLocaleString(undefined,{month:'long',year:'numeric'});let first=new Date(y,m,1),last=new Date(y,m+1,0),start=first.getDay(),cells=[];for(let i=0;i<start;i++)cells.push('<div></div>');let dates=new Set(state.workouts.map(w=>w.date));for(let d=1;d<=last.getDate();d++){let ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,today=ds===new Date().toISOString().slice(0,10);cells.push(`<div class="day ${dates.has(ds)?'done':''} ${today?'today':''}"><b>${d}</b>${dates.has(ds)?'<div class="sub">✓ trained</div>':''}</div>`)}document.getElementById('calendarGrid').innerHTML=cells.join('')}
-function moveMonth(n){month.setMonth(month.getMonth()+n);renderCalendar()}
-function loadProfile(){let p=state.profile;for(let k of ['age','height','weight','experience','goal'])document.getElementById(k).value=p[k]}
-function saveProfile(){state.profile={age:+age.value,height:+height.value,weight:+weight.value,experience:+experience.value,goal:goal.value};save();toast('Profile saved.');show('dashboard')}
-function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ironroot-data.json';a.click();URL.revokeObjectURL(a.href)}
-initLog();renderDash();renderExercises();
+
+function renderRankLegend(){
+  const container = document.getElementById('rankLegend');
+  const rows = rankDescriptions.map((rank, index) => {
+    const label = rank.label;
+    const pct = Math.round((index / (rankDescriptions.length - 1)) * 100);
+    return `
+      <div class="rank-row">
+        <strong>${label}</strong>
+        <small>${rank.text}</small>
+        <span class="percent">${pct}%</span>
+      </div>
+    `;
+  }).join('');
+  container.innerHTML = rows;
+}
+
+function renderHistory(){
+  let el=document.getElementById('historyTable');
+  if(!state.workouts.length){
+    el.innerHTML='<div class=\"empty\">No logged workouts.</div>';
+    return;
+  }
+  el.innerHTML=`<table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Goal</th>
+        <th>Exercises</th>
+        <th>Volume</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${state.workouts.map(w=>`
+        <tr>
+          <td>${w.date}</td>
+          <td>${w.goal || '—'}</td>
+          <td>${(w.exercises||[]).map(e=>`${e.name} (${Math.round(exerciseScore(e))})`).join('<br>')}</td>
+          <td>${Math.round(w.total).toLocaleString()} lb</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+function renderCalendar(){
+  let y=month.getFullYear(),m=month.getMonth();
+  document.getElementById('monthTitle').textContent=month.toLocaleString(undefined,{month:'long',year:'numeric'});
+  let first=new Date(y,m,1); let start=new Date(first); start.setDate(start.getDate()-((first.getDay()+6)%7));
+  let grid=document.getElementById('calendarGrid');
+  const names=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  let cells = names.map(n=>`<div class="day-name">${n}</div>`).join('');
+  let day=new Date(start); let counts = {};
+  state.workouts.forEach(w=>counts[w.date]=1);
+
+  for(let i=0;i<42;i++){
+    let inMonth = day.getMonth()===m;
+    let key = day.toISOString().slice(0,10);
+    let marker = counts[key] ? '<div class=\"marker\"></div>' : '';
+    cells += `<div class="day ${inMonth ? '' : 'muted'}">
+      <div class=\"date\">${day.getDate()}</div>
+      <div class=\"markers\">${marker}</div>
+    </div>`;
+    day.setDate(day.getDate()+1);
+  }
+
+  grid.innerHTML = cells;
+}
+
+function moveMonth(n){
+  month.setMonth(month.getMonth()+n);
+  renderCalendar();
+}
+
+function loadProfile(){
+  let p=state.profile;
+  for(let k of ['age','height','weight','experience']) document.getElementById(k).value = p[k];
+  document.getElementById('goalProfile').value = p.goal || 'Muscle / physique';
+}
+
+function saveProfile(){
+  state.profile = {
+    age:+document.getElementById('age').value,
+    height:+document.getElementById('height').value,
+    weight:+document.getElementById('weight').value,
+    experience:+document.getElementById('experience').value,
+    goal:document.getElementById('goalProfile').value
+  };
+  save();
+  toast('Profile saved.');
+  show('dashboard');
+  renderDash();
+}
+
+function exportData(){
+  let blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+  let a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ironroot-data.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => show(b.dataset.view));
+initLog();
+renderDash();
+renderExercises();
+renderHistory();
+renderCalendar();
+loadProfile();
 </script>
 </body>
 </html>
