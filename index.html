@@ -1,1 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IRONROOT v2</title>
+  <style>
+    :root{
+      --bg:#0a0d0c;
+      --panel:#111715;
+      --line:#26332e;
+      --text:#edf3ef;
+      --muted:#94a59d;
+      --accent:#b9f36b;
+      --danger:#ff7b72;
+      --warning:#f0c96b;
+      --shadow:rgba(0,0,0,.28);
+    }
 
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,Arial,sans-serif;
+    }
+
+    .app{
+      max-width:1200px;
+      margin:auto;
+      padding:20px;
+    }
+
+    h1,h2,h3,p{margin-top:0}
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:14px;
+      box-shadow:0 8px 24px var(--shadow);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:12px;
+    }
+
+    .progress{
+      height:12px;
+      background:#1a2420;
+      border-radius:999px;
+      overflow:hidden;
+      margin:8px 0 10px;
+    }
+
+    .progress div{
+      height:100%;
+      background:linear-gradient(90deg,#d4ff8a,var(--accent));
+      border-radius:inherit;
+      transition:width .25s ease;
+    }
+
+    input,select,button{
+      padding:10px;
+      border-radius:8px;
+      border:1px solid var(--line);
+      background:#18221e;
+      color:var(--text);
+    }
+
+    button{
+      cursor:pointer;
+      background:var(--accent);
+      color:#0f120f;
+      border:none;
+      font-weight:700;
+      margin:4px 6px 0 0;
+    }
+
+    button.secondary{
+      background:#1d2b26;
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+
+    .row{
+      margin-bottom:12px;
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#171f1c;
+    }
+
+    .row > div{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .row input,
+    .row select{
+      flex:1 1 120px;
+      min-width:0;
+    }
+
+    .row .failure{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      min-width:140px;
+    }
+
+    .rank-card{
+      padding:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .rank-card:last-child{
+      border-bottom:none;
+    }
+
+    .small{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    #overallRank{
+      font-weight:800;
+      font-size:48px;
+      line-height:1;
+      letter-spacing:1px;
+    }
+
+    .meta-line{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#1d2b26;
+      border:1px solid var(--line);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .empty{
+      color:var(--muted);
+      font-style:italic;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <h1>IRONROOT v2</h1>
+
+  <div class="panel">
+    <div class="meta-line">
+      <h2>Overall Rank</h2>
+      <span class="pill" id="sessionCount">0 workouts</span>
+    </div>
+    <div id="overallRank">AIR I</div>
+    <div class="progress"><div id="overallBar" style="width:0%"></div></div>
+    <p id="overallDetail"></p>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h3>Exercise Rankings</h3>
+      <div id="exerciseRanks"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Personal Records</h3>
+      <div id="prs"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Rank Guide</h3>
+      AIR = Complete beginner<br>
+      WOOD = Learning fundamentals<br>
+      STONE = Recreational lifter<br>
+      IRON = Consistent gym-goer<br>
+      STEEL = Stronger than average<br>
+      TITANIUM = Advanced<br>
+      DIAMOND = Exceptional<br>
+      ELITE = Top-level
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Workout Logger</h2>
+    <div id="rows"></div>
+    <button onclick="addRow()">Add Exercise</button>
+    <button onclick="saveWorkout()">Save Workout</button>
+    <button class="secondary" onclick="clearWorkout()">Clear All</button>
+  </div>
+</div>
+
+<script>
+const ranks = ["AIR","WOOD","STONE","IRON","STEEL","TITANIUM","DIAMOND","ELITE"];
+const storageKey = "ironroot_v2_workouts";
+
+const standards = {
+  "Bench Press": [0.65,0.85,1.0,1.3,1.7],
+  "Deadlift": [1.0,1.4,1.8,2.4,3.0],
+  "Squat": [0.9,1.2,1.6,2.1,2.7],
+  "Overhead Press": [0.35,0.5,0.7,0.9,1.1]
+};
+
+let workouts = loadWorkouts();
+
+function loadWorkouts(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    return Array.isArray(saved) ? saved : [];
+  }catch{
+    return [];
+  }
+}
+
+function saveWorkouts(){
+  localStorage.setItem(storageKey, JSON.stringify(workouts));
+}
+
+function est1RM(weight, reps){
+  if (!weight || !reps) return 0;
+  return weight * (1 + reps / 30);
+}
+
+function rankLabelFromScore(score){
+  const idx = Math.min(Math.floor(score / 12.5), ranks.length - 1);
+  const label = ranks[idx];
+  return label + " " + String((score % 12.5 >= 0 ? 1 : 0));
+}
+
+function scoreFromRepThresholds(reps, arr){
+  let tier = 0;
+  while (tier < arr.length && reps >= arr[tier]) tier++;
+  const clampedTier = Math.min(tier, arr.length);
+  const score = Math.min(100, (clampedTier / arr.length) * 100);
+  return {
+    score,
+    label: ranks[Math.min(clampedTier, ranks.length - 1)]
+  };
+}
+
+function exerciseRank(ex, bw = 150){
+  if (ex.name === "Push-up"){
+    return scoreFromRepThresholds(ex.reps, [10,20,40,70,100]);
+  }
+
+  if (ex.name === "Pull-up"){
+    return scoreFromRepThresholds(ex.reps, [2,6,12,20,30]);
+  }
+
+  const s = standards[ex.name];
+  if (!s) return { score: 10, label: "AIR" };
+
+  const rel = est1RM(ex.weight, ex.reps) / bw;
+  let tier = 0;
+  while (tier < s.length && rel >= s[tier]) tier++;
+
+  const score = Math.min(100, (rel / s[s.length - 1]) * 100);
+  return {
+    score,
+    label: ranks[Math.min(tier, ranks.length - 1)]
+  };
+}
+
+function addRow(data = {}){
+  const d = document.createElement("div");
+  d.className = "row";
+
+  const name = data.name || "Bench Press";
+  const weight = data.weight || "";
+  const reps = data.reps || "";
+  const sets = data.sets || 3;
+  const failure = !!data.failure;
+
+  d.innerHTML = `
+    <div>
+      <select class="name">
+        <option ${name === "Bench Press" ? "selected" : ""}>Bench Press</option>
+        <option ${name === "Deadlift" ? "selected" : ""}>Deadlift</option>
+        <option ${name === "Squat" ? "selected" : ""}>Squat</option>
+        <option ${name === "Overhead Press" ? "selected" : ""}>Overhead Press</option>
+        <option ${name === "Push-up" ? "selected" : ""}>Push-up</option>
+        <option ${name === "Pull-up" ? "selected" : ""}>Pull-up</option>
+      </select>
+      <input class="weight" type="number" value="${weight}" placeholder="Weight">
+      <input class="reps" type="number" value="${reps}" placeholder="Reps">
+      <input class="sets" type="number" value="${sets}" placeholder="Sets">
+      <label class="failure">
+        <input class="failure-box" type="checkbox" ${failure ? "checked" : ""}>
+        Till Failure
+      </label>
+      <button class="secondary remove-row" type="button">Remove</button>
+    </div>
+  `;
+
+  d.querySelector(".remove-row").addEventListener("click", () => {
+    d.remove();
+  });
+
+  document.getElementById("rows").appendChild(d);
+}
+
+function saveWorkout(){
+  const list = [];
+
+  document.querySelectorAll("#rows > .row").forEach(r => {
+    const name = r.querySelector(".name").value;
+    const weight = +r.querySelector(".weight").value || 0;
+    const reps = +r.querySelector(".reps").value || 0;
+    const sets = +r.querySelector(".sets").value || 0;
+    const failure = r.querySelector(".failure-box").checked;
+
+    if (name && (weight > 0 || reps > 0 || sets > 0)) {
+      list.push({ name, weight, reps, sets, failure });
+    }
+  });
+
+  workouts.push(...list);
+  saveWorkouts();
+  render();
+  renderRows();
+}
+
+function clearWorkout(){
+  workouts = [];
+  saveWorkouts();
+  render();
+  renderRows();
+}
+
+function renderRows(){
+  const rows = document.getElementById("rows");
+  rows.innerHTML = "";
+  const saved = loadWorkouts();
+  if (saved.length) {
+    saved.forEach(item => addRow(item));
+  } else {
+    addRow();
+  }
+}
+
+function render(){
+  let best = 0;
+  let bestLabel = "AIR I";
+  let html = "";
+  const prs = {};
+
+  workouts.forEach(w => {
+    const r = exerciseRank(w);
+    if (r.score > best){
+      best = r.score;
+      bestLabel = r.label;
+    }
+
+    html += `
+      <div class="rank-card">
+        <b>${w.name}</b> - ${r.label}<br>
+        <div class="small">${w.weight} lb × ${w.reps} reps ${w.sets} set${w.sets === 1 ? "" : "s"} ${w.failure ? "• Failure ✓" : ""}</div>
+        <div class="progress"><div style="width:${Math.min(100, r.score)}%"></div></div>
+      </div>
+    `;
+
+    const current = prs[w.name];
+    const candidate = Number(w.weight) || 0;
+    if (!current || candidate > current) prs[w.name] = candidate;
+  });
+
+  document.getElementById("exerciseRanks").innerHTML = html || "<div class='empty'>No exercises logged</div>";
+  document.getElementById("overallRank").textContent = bestLabel;
+  document.getElementById("overallBar").style.width = best + "%";
+  document.getElementById("overallDetail").textContent = best > 0
+    ? Math.round(best) + "% toward next rank"
+    : "Your rank will appear here after your first entry.";
+
+  const prHtml = Object.entries(prs).length
+    ? Object.entries(prs).map(([k,v]) => `${k}: ${v} lb`).join("<br>")
+    : "<div class='empty'>No personal records yet</div>";
+
+  document.getElementById("prs").innerHTML = prHtml;
+  document.getElementById("sessionCount").textContent = workouts.length + (workouts.length === 1 ? " workout" : " workouts");
+
+  saveWorkouts();
+}
+
+renderRows();
+render();
+</script>
+</body>
+</html>
